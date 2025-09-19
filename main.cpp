@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "raymath.h"
 
 int main(void)
 {
@@ -8,15 +9,25 @@ int main(void)
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Top down");
 
     Texture2D map = LoadTexture("nature_tileset/mymap.png");
-    float mapX {};
+    Vector2 mapPos {0.0, 0.0};
 
     SetTargetFPS(60);
     while (!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(RAYWHITE);
+        
+        Vector2 direction{};
+        if (IsKeyDown(KEY_A)) direction.x -= 1.0;
+        if (IsKeyDown(KEY_D)) direction.x += 1.0;
+        if (IsKeyDown(KEY_W)) direction.y -= 1.0;
+        if (IsKeyDown(KEY_S)) direction.y += 1.0;
+        if (Vector2Length(direction) != 0.0)
+        {
+            
+            mapPos = Vector2Subtract(mapPos, Vector2Normalize(direction));
+        }
 
-        Vector2 mapPos {mapX, 0.0};
         DrawTextureEx(map, mapPos, 0.0, 4.0, WHITE);
         
         EndDrawing();
