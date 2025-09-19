@@ -10,6 +10,7 @@ int main(void)
 
     Texture2D map = LoadTexture("nature_tileset/mymap.png");
     Vector2 mapPos {0.0, 0.0};
+    float speed {4};
 
     SetTargetFPS(60);
     while (!WindowShouldClose())
@@ -24,8 +25,7 @@ int main(void)
         if (IsKeyDown(KEY_S)) direction.y += 1.0;
         if (Vector2Length(direction) != 0.0)
         {
-            
-            mapPos = Vector2Subtract(mapPos, Vector2Normalize(direction));
+            mapPos = Vector2Subtract(mapPos, Vector2Scale(Vector2Normalize(direction), speed));
         }
 
         DrawTextureEx(map, mapPos, 0.0, 4.0, WHITE);
