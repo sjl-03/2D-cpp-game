@@ -2,6 +2,7 @@
 #include "raymath.h"
 #include "Character.h"
 #include "Prop.h"
+#include "Enermy.h"
 
 int main(void)
 {
@@ -16,13 +17,14 @@ int main(void)
 
     Character knight{WINDOW_WIDTH, WINDOW_HEIGHT};
 
-    
-
     Prop props[3]{
-        Prop{Vector2{300.f,1000.f}, LoadTexture("nature_tileset/Rock.png")},
-        Prop{Vector2{600.f,300.f}, LoadTexture("nature_tileset/Rock.png")},
-        Prop{Vector2{400.f,500.f}, LoadTexture("nature_tileset/Log.png")}
-    };
+        Prop{Vector2{300.f, 1000.f}, LoadTexture("nature_tileset/Rock.png")},
+        Prop{Vector2{600.f, 300.f}, LoadTexture("nature_tileset/Rock.png")},
+        Prop{Vector2{400.f, 500.f}, LoadTexture("nature_tileset/Log.png")}};
+
+    Enermy goblin{Vector2{400.f, 500.f},
+                  LoadTexture("characters/goblin_idle_spritesheet.png"),
+                  LoadTexture("characters/goblin_run_spritesheet.png")};
 
     SetTargetFPS(60);
     while (!WindowShouldClose())
@@ -35,29 +37,33 @@ int main(void)
         DrawTextureEx(map, mapPos, 0.0, SCALE_MAP, WHITE);
 
         // Draw props
-        for (auto prop : props){
+        for (auto prop : props)
+        {
             prop.Render(knight.getWorldPos());
         }
-       
-
+        
         knight.tick(GetFrameTime());
 
         // Check map bounds
         if (knight.getWorldPos().x < 0.f ||
             knight.getWorldPos().y < 0.f ||
-            knight.getWorldPos().x > map.width*SCALE_MAP - WINDOW_WIDTH||
-            knight.getWorldPos().y > map.height*SCALE_MAP - WINDOW_HEIGHT)
+            knight.getWorldPos().x > map.width * SCALE_MAP - WINDOW_WIDTH ||
+            knight.getWorldPos().y > map.height * SCALE_MAP - WINDOW_HEIGHT)
+        {
+            knight.undoMovement();
+        }
+
+        // Check collision
+        for (auto prop : props)
+        {
+            if (CheckCollisionRecs(prop.getCollisionRec(knight.getWorldPos()),
+                                   knight.getCollisionRec()))
             {
                 knight.undoMovement();
             }
-        
-        // Check collision
-        for (auto prop : props){
-            if (CheckCollisionRecs(prop.getCollisionRec(knight.getWorldPos()),
-                knight.getCollisionRec())){
-                    knight.undoMovement();
-            }
         }
+
+        goblin.tick(GetFrameTime());
 
         EndDrawing();
     }
