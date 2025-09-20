@@ -11,9 +11,9 @@ Character::Character(int windowWidth, int windowHeight)
 }
 
 
-void Character::tick(float deltaTiem) // shift+option+f to fix formatting
+void Character::tick(float deltaTime) // shift+option+f to fix formatting
 {
-    worldPosLastFrame = worldPos;
+    BaseCharacter::tick(deltaTime);
     
     bool isMoving{false};
     Vector2 direction{};
@@ -35,7 +35,7 @@ void Character::tick(float deltaTiem) // shift+option+f to fix formatting
     isMoving ? texture = run : texture = idle;
 
     // Update animation frame
-    runningTime += deltaTiem; // delta time = time since last frame
+    runningTime += deltaTime; // delta time = time since last frame
     if (runningTime >= UPDATE_TIME)
     {
         frame++;
@@ -49,19 +49,4 @@ void Character::tick(float deltaTiem) // shift+option+f to fix formatting
     Rectangle dest{screenPos.x, screenPos.y,SCALE * width,SCALE * height};
     Vector2 origin{};
     DrawTexturePro(texture, source, dest, origin, 0.f, WHITE);
-}
-
-void Character::undoMovement()
-{
-    worldPos = worldPosLastFrame;
-}
-
-Rectangle Character::getCollisionRec()
-{
-    return Rectangle{
-        screenPos.x,
-        screenPos.y,
-        width * SCALE,
-        height * SCALE
-    };
 }

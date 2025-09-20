@@ -1,30 +1,11 @@
 #include "raylib.h"
+#include "BaseCharacter.h"
 
-class Character
+class Character : public BaseCharacter
 {
 public:
     Character(int windowWidth, int windowHeight);
-    Vector2 getWorldPos() { return worldPos; };
-    void tick(float deltaTiem);
-    void undoMovement();
-    Rectangle getCollisionRec();
+    virtual void tick(float deltaTiem) override;
 
 private:
-    Texture2D texture{LoadTexture("characters/knight_idle_spritesheet.png")};
-    Texture2D idle{LoadTexture("characters/knight_idle_spritesheet.png")};
-    Texture2D run{LoadTexture("characters/knight_run_spritesheet.png")};
-    Vector2 screenPos{};
-    Vector2 worldPos{};
-    Vector2 worldPosLastFrame{};
-    // -1: facing left, 1: facing right
-    float rightLeft{1.f};
-    // Animation variables
-    float runningTime{};
-    int frame{};
-    static constexpr float SCALE{4.f};
-    static constexpr int MAX_FRAME{6};
-    static constexpr float UPDATE_TIME{1.f / 15.f};
-    static constexpr float speed{4.f};
-    float width{};
-    float height{};
 };
