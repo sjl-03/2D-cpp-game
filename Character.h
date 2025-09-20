@@ -4,7 +4,7 @@ class Character
 {
 public:
     Character(int windowWidth, int windowHeight);
-    Vector2 getWorldPos() { return worldPos; }
+    Vector2 getWorldPos() { return worldPos; };
     void tick(float deltaTiem);
     void undoMovement();
     Rectangle getCollisionRec();
