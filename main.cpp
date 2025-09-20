@@ -12,6 +12,7 @@ int main(void)
 
     Texture2D map = LoadTexture("nature_tileset/mymap.png");
     Vector2 mapPos{0.0, 0.0};
+    const float SCALE_MAP{4.0};
 
     Character knight{};
     knight.setScreenPos(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -24,9 +25,18 @@ int main(void)
 
         // Draw map
         mapPos = Vector2Scale(knight.getWorldPos(), -1.f);
-        DrawTextureEx(map, mapPos, 0.0, 4.0, WHITE);
+        DrawTextureEx(map, mapPos, 0.0, SCALE_MAP, WHITE);
 
         knight.tick(GetFrameTime());
+
+        // Check map bounds
+        if (knight.getWorldPos().x < 0.f ||
+            knight.getWorldPos().y < 0.f ||
+            knight.getWorldPos().x > map.width*SCALE_MAP - WINDOW_WIDTH||
+            knight.getWorldPos().y > map.height*SCALE_MAP - WINDOW_HEIGHT)
+            {
+                knight.undoMovement();
+            }
 
         EndDrawing();
     }

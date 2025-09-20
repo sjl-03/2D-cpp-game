@@ -16,6 +16,8 @@ void Character::setScreenPos(int windowWidth, int windowHeight)
 
 void Character::tick(float deltaTiem) // shift+option+f to fix formatting
 {
+    worldPosLastFrame = worldPos;
+    
     bool isMoving{false};
     Vector2 direction{};
     if (IsKeyDown(KEY_A))
@@ -54,4 +56,9 @@ void Character::tick(float deltaTiem) // shift+option+f to fix formatting
                    scaleTexture * height};
     Vector2 origin{};
     DrawTexturePro(texture, source, dest, origin, 0.f, WHITE);
+}
+
+void Character::undoMovement()
+{
+    worldPos = worldPosLastFrame;
 }
