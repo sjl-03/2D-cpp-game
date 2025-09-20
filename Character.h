@@ -18,9 +18,9 @@ private:
     // -1: facing left, 1: facing right
     float rightLeft{1.f};
     // Animation variables
-    float scaleTexture{4.f};
     float runningTime{};
     int frame{};
+    static constexpr float SCALE{4.f};
     static constexpr int MAX_FRAME{6};
     static constexpr float UPDATE_TIME{1.f / 15.f};
     static constexpr float speed{4.f};

@@ -6,8 +6,8 @@ Character::Character(int windowWidth, int windowHeight)
     width = texture.width / MAX_FRAME;
     height = texture.height;
     screenPos = {
-        (static_cast<float>(windowWidth) / 2.f) - (scaleTexture*(0.5f * width)),
-        (static_cast<float>(windowHeight) / 2.f) - (scaleTexture*(0.5f * height))};
+        (static_cast<float>(windowWidth) / 2.f) - (SCALE*(0.5f * width)),
+        (static_cast<float>(windowHeight) / 2.f) - (SCALE*(0.5f * height))};
 }
 
 
@@ -46,7 +46,7 @@ void Character::tick(float deltaTiem) // shift+option+f to fix formatting
 
     // Draw character
     Rectangle source{width * frame, 0.f,rightLeft * width, height};
-    Rectangle dest{screenPos.x, screenPos.y,scaleTexture * width,scaleTexture * height};
+    Rectangle dest{screenPos.x, screenPos.y,SCALE * width,SCALE * height};
     Vector2 origin{};
     DrawTexturePro(texture, source, dest, origin, 0.f, WHITE);
 }
