@@ -16,7 +16,13 @@ int main(void)
 
     Character knight{WINDOW_WIDTH, WINDOW_HEIGHT};
 
-    Prop rock{Vector2{30.f,30.f}, LoadTexture("nature_tileset/Rock.png")};
+    
+
+    Prop props[3]{
+        Prop{Vector2{300.f,1000.f}, LoadTexture("nature_tileset/Rock.png")},
+        Prop{Vector2{600.f,300.f}, LoadTexture("nature_tileset/Rock.png")},
+        Prop{Vector2{400.f,500.f}, LoadTexture("nature_tileset/Log.png")}
+    };
 
     SetTargetFPS(60);
     while (!WindowShouldClose())
@@ -28,7 +34,11 @@ int main(void)
         mapPos = Vector2Scale(knight.getWorldPos(), -1.f);
         DrawTextureEx(map, mapPos, 0.0, SCALE_MAP, WHITE);
 
-        rock.Render(knight.getWorldPos());
+        // Draw props
+        for (auto prop : props){
+            prop.Render(knight.getWorldPos());
+        }
+       
 
         knight.tick(GetFrameTime());
 
