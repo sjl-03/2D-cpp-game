@@ -19,6 +19,8 @@ int main(void)
         (float)WINDOW_WIDTH/2.0f - scaleKnight*(0.5f* (float)knight.width / (float)numImageInSpriteKnight),
         (float)WINDOW_HEIGHT/2.f - scaleKnight*(0.5f* (float)knight.height)
     };
+    // -1: facing left, 1: facing right
+    float rightLeft{1.f};
 
     SetTargetFPS(60);
     while (!WindowShouldClose())
@@ -34,12 +36,13 @@ int main(void)
         if (Vector2Length(direction) != 0.0)
         {
             mapPos = Vector2Subtract(mapPos, Vector2Scale(Vector2Normalize(direction), speed));
+            direction.x < 0.f ? rightLeft = -1.f : rightLeft = 1.f; // Check direction char is facing
         }
 
         // Draw map
         DrawTextureEx(map, mapPos, 0.0, 4.0, WHITE);
         // Draw character
-        Rectangle knightSource{0.f, 0.f,  (float)knight.width/(float)numImageInSpriteKnight,  (float)knight.height};
+        Rectangle knightSource{0.f, 0.f,  rightLeft*(float)knight.width/(float)numImageInSpriteKnight,  (float)knight.height};
         Rectangle knightDest{knightPos.x, knightPos.y, scaleKnight*(float)knightSource.width, scaleKnight*(float)knightSource.height};
         Vector2 knightOrigin {};
         DrawTexturePro(knight,knightSource, knightDest, knightOrigin, 0.f, WHITE);
