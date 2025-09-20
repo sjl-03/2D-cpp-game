@@ -50,6 +50,14 @@ int main(void)
             {
                 knight.undoMovement();
             }
+        
+        // Check collision
+        for (auto prop : props){
+            if (CheckCollisionRecs(prop.getCollisionRec(knight.getWorldPos()),
+                knight.getCollisionRec())){
+                    knight.undoMovement();
+            }
+        }
 
         EndDrawing();
     }

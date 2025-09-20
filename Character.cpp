@@ -34,7 +34,7 @@ void Character::tick(float deltaTiem) // shift+option+f to fix formatting
     }
     isMoving ? texture = run : texture = idle;
 
-    // Update nimation frame
+    // Update animation frame
     runningTime += deltaTiem; // delta time = time since last frame
     if (runningTime >= UPDATE_TIME)
     {
@@ -56,7 +56,7 @@ void Character::undoMovement()
     worldPos = worldPosLastFrame;
 }
 
-Rectangle Character::getCollisionRec(Vector2 screenPos)
+Rectangle Character::getCollisionRec()
 {
     return Rectangle{
         screenPos.x,
