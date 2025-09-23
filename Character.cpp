@@ -50,3 +50,8 @@ void Character::tick(float deltaTime) // shift+option+f to fix formatting
     Vector2 origin{};
     DrawTexturePro(texture, source, dest, origin, 0.f, WHITE);
 }
+
+Vector2 Character::getScreenPos()
+{
+    return screenPos;
+}

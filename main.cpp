@@ -22,7 +22,7 @@ int main(void)
         Prop{Vector2{600.f, 300.f}, LoadTexture("nature_tileset/Rock.png")},
         Prop{Vector2{400.f, 500.f}, LoadTexture("nature_tileset/Log.png")}};
 
-    Enermy goblin{Vector2{400.f, 500.f},
+    Enermy goblin{Vector2{600.f, 500.f},
                   LoadTexture("characters/goblin_idle_spritesheet.png"),
                   LoadTexture("characters/goblin_run_spritesheet.png")};
 
