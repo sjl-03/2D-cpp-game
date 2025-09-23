@@ -9,9 +9,11 @@ class Character : public BaseCharacter
 public:
     Character(int windowWidth, int windowHeight);
     virtual void tick(float deltaTiem) override;
-    Vector2 getScreenPos();
+    virtual Vector2 getScreenPos() override;
 
 private:
+    int windowWidth{};
+    int windowHeight{};
 };
 
 #endif

@@ -14,8 +14,8 @@ void BaseCharacter::undoMovement()
 Rectangle BaseCharacter::getCollisionRec()
 {
     return Rectangle{
-        screenPos.x,
-        screenPos.y,
+        getScreenPos().x,
+        getScreenPos().y,
         width * SCALE,
         height * SCALE
     };
@@ -51,7 +51,7 @@ void BaseCharacter::tick(float deltaTime)
 
     // Draw character
     Rectangle source{width * frame, 0.f,rightLeft * width, height};
-    Rectangle dest{screenPos.x, screenPos.y,SCALE * width,SCALE * height};
+    Rectangle dest{getScreenPos().x, getScreenPos().y,SCALE * width,SCALE * height};
     Vector2 origin{};
     DrawTexturePro(texture, source, dest, origin, 0.f, WHITE);
 
