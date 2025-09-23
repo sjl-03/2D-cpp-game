@@ -20,16 +20,14 @@ void Enermy::tick(float deltaTime)
 {
         
     // get toTarget (= -screenspace of enermy + screenspace of knight )
-    Vector2 toTarget = Vector2Subtract(target->getScreenPos(), screenPos);
+    velocity = Vector2Subtract(target->getScreenPos(), screenPos);
     // normalise toTarget
-    toTarget = Vector2Normalize(toTarget);
     // mutiply |toTarget| by speed
-    toTarget = Vector2Scale(toTarget, speed);
     // move Enermy
-    worldPos = Vector2Add(worldPos, toTarget);
-
     screenPos = Vector2Subtract(worldPos, target->getWorldPos());
+
     BaseCharacter::tick(deltaTime);
+
 }
 
 void Enermy::setTarget(Character* character)

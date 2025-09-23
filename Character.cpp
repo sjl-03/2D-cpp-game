@@ -13,26 +13,16 @@ Character::Character(int windowWidth, int windowHeight)
 
 void Character::tick(float deltaTime) // shift+option+f to fix formatting
 {
-    BaseCharacter::tick(deltaTime);
-    
-    bool isMoving{false};
-    Vector2 direction{};
     if (IsKeyDown(KEY_A))
-        direction.x -= 1.0;
+        velocity.x -= 1.0;
     if (IsKeyDown(KEY_D))
-        direction.x += 1.0;
+        velocity.x += 1.0;
     if (IsKeyDown(KEY_W))
-        direction.y -= 1.0;
+        velocity.y -= 1.0;
     if (IsKeyDown(KEY_S))
-        direction.y += 1.0;
-    if (Vector2Length(direction) != 0.0)
-    {
-        // worldPos = worldPos + direction
-        worldPos = Vector2Add(worldPos, Vector2Scale(Vector2Normalize(direction), speed));
-        direction.x < 0.f ? rightLeft = -1.f : rightLeft = 1.f; // Check direction char is facing
-        isMoving = true;
-    }
-    isMoving ? texture = run : texture = idle;
+        velocity.y += 1.0;
+    
+    BaseCharacter::tick(deltaTime);
 
     // Update animation frame
     runningTime += deltaTime; // delta time = time since last frame

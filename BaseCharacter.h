@@ -31,6 +31,7 @@ protected:
     float speed{4.f};
     float width{};
     float height{};
+    Vector2 velocity{};
 };
 
 #endif
