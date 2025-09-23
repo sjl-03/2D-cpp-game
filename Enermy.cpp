@@ -18,3 +18,8 @@ void Enermy::tick(float deltaTime)
 {
     BaseCharacter::tick(deltaTime);
 }
+
+void Enermy::setTarget(Character* character)
+{
+    target = character;
+}

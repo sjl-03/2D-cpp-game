@@ -1,11 +1,14 @@
 #include "raylib.h"
 #include "BaseCharacter.h"
+#include "Character.h"
 
 class Enermy : public BaseCharacter
 {
 public:
     Enermy(Vector2 pos, Texture2D idle_texture, Texture2D run_texture);
     virtual void tick(float deltaTime) override;
+    void setTarget(Character* input);
 
 private:
+    Character* target{};
 };
