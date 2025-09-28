@@ -18,6 +18,8 @@ Vector2 Character::getScreenPos()
 
 void Character::tick(float deltaTime) // shift+option+f to fix formatting
 {
+    if (!isAlive()) return;
+
     if (IsKeyDown(KEY_A))
         velocity.x -= 1.0;
     if (IsKeyDown(KEY_D))
@@ -41,7 +43,8 @@ void Character::tick(float deltaTime) // shift+option+f to fix formatting
             getScreenPos().y + offset.y - weapon.height*scale,
             weapon.width * scale, weapon.height * scale
         };
-        rotation = 35.f;
+        
+        rotation = IsMouseButtonDown(MOUSE_LEFT_BUTTON) ? 35.f : 0.f;
     }
     else{
         origin = {weapon.width * scale, weapon.height * scale};
@@ -51,7 +54,7 @@ void Character::tick(float deltaTime) // shift+option+f to fix formatting
             getScreenPos().y + offset.y - weapon.height*scale,
             weapon.width * scale, weapon.height * scale
         };
-        rotation = -35.f;
+        rotation = IsMouseButtonDown(MOUSE_LEFT_BUTTON) ? -35.f : 0.f;
     }
 
     Rectangle source{0.f, 0.f, 

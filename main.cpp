@@ -55,7 +55,7 @@ int main(void)
             knight.undoMovement();
         }
 
-        // Check collision
+        // Check collision with prop
         for (auto prop : props)
         {
             if (CheckCollisionRecs(prop.getCollisionRec(knight.getWorldPos()),
@@ -66,6 +66,14 @@ int main(void)
         }
 
         goblin.tick(GetFrameTime());
+
+        // Check collision with weapon
+        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+            if (CheckCollisionRecs(knight.getWeaponCollisionRec(), 
+            goblin.getCollisionRec())){
+                goblin.setAlive(false);
+            }
+        }
 
         EndDrawing();
     }
