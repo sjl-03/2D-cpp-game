@@ -25,7 +25,7 @@ protected:
     // Animation variables
     float runningTime{};
     int frame{};
-    static constexpr float SCALE{4.f};
+    float scale{4.f};
     static constexpr int MAX_FRAME{6};
     static constexpr float UPDATE_TIME{1.f / 15.f};
     float speed{4.f};
