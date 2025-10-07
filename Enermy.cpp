@@ -13,7 +13,7 @@ Enermy::Enermy(Vector2 pos,
     width = texture.width / MAX_FRAME;
     height = texture.height;
 
-    speed = 3.f;
+    speed = 2.f;
 }
 
 void Enermy::tick(float deltaTime)
@@ -25,6 +25,8 @@ void Enermy::tick(float deltaTime)
     // normalise toTarget
     // mutiply |toTarget| by speed
     // move Enermy
+
+    if (Vector2Length(velocity) < radius) velocity = {};
 
     BaseCharacter::tick(deltaTime);
 
