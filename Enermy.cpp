@@ -19,7 +19,7 @@ Enermy::Enermy(Vector2 pos,
 void Enermy::tick(float deltaTime)
 {
     if (!isAlive()) return;
-    
+
     // get toTarget (= -screenspace of enermy + screenspace of knight )
     velocity = Vector2Subtract(target->getScreenPos(), getScreenPos());
     // normalise toTarget
@@ -28,6 +28,9 @@ void Enermy::tick(float deltaTime)
 
     BaseCharacter::tick(deltaTime);
 
+    if (CheckCollisionRecs(getCollisionRec(), target->getCollisionRec())){
+        target->takeDamage(damagePerSec * deltaTime);
+    }
 }
 
 Vector2 Enermy::getScreenPos()

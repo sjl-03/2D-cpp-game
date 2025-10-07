@@ -3,6 +3,7 @@
 #include "Character.h"
 #include "Prop.h"
 #include "Enermy.h"
+#include <string>
 
 int main(void)
 {
@@ -63,6 +64,17 @@ int main(void)
             {
                 knight.undoMovement();
             }
+        }
+
+        if (!knight.isAlive()){
+             DrawText("Game Over", 55.f, 45.f, 40, RED);
+             EndDrawing();
+             continue;
+        }
+        else {
+            std::string knightHealth {"Health: "};
+            knightHealth.append(std::to_string(knight.getHealth()), 0, 5);
+            DrawText(knightHealth.c_str(), 55.f, 45.f, 40, WHITE);
         }
 
         goblin.tick(GetFrameTime());
