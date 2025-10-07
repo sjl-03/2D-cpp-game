@@ -27,7 +27,19 @@ int main(void)
                   LoadTexture("characters/goblin_idle_spritesheet.png"),
                   LoadTexture("characters/goblin_run_spritesheet.png")};
 
-    goblin.setTarget(&knight);
+    Enermy slime{Vector2{100.f, 700.f},
+                  LoadTexture("characters/slime_idle_spritesheet.png"),
+                  LoadTexture("characters/slime_run_spritesheet.png")};
+
+    Enermy* enermies []{
+        &goblin, 
+        &slime
+    };
+
+    for (Enermy* enermy : enermies){
+        enermy -> setTarget(&knight);
+    }
+
 
     SetTargetFPS(60);
     while (!WindowShouldClose())
@@ -77,13 +89,14 @@ int main(void)
             DrawText(knightHealth.c_str(), 55.f, 45.f, 40, WHITE);
         }
 
-        goblin.tick(GetFrameTime());
-
-        // Check collision with weapon
-        if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-            if (CheckCollisionRecs(knight.getWeaponCollisionRec(), 
-            goblin.getCollisionRec())){
-                goblin.setAlive(false);
+        for (auto enermy : enermies){
+             enermy -> tick(GetFrameTime());
+             // Check collision with weapon
+            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+                if (CheckCollisionRecs(knight.getWeaponCollisionRec(), 
+                enermy -> getCollisionRec())){
+                    enermy -> setAlive(false);
+                }
             }
         }
 
