@@ -65,8 +65,9 @@ void Character::tick(float deltaTime) // shift+option+f to fix formatting
     
     DrawTexturePro(weapon, source, dest, origin, rotation, WHITE);
 
-    DrawRectangleLines(weaponCollisionRec.x, weaponCollisionRec.y, 
-        weaponCollisionRec.width, weaponCollisionRec.height, RED); // Check collision box
+    // Check collision box
+    // DrawRectangleLines(weaponCollisionRec.x, weaponCollisionRec.y, 
+    //     weaponCollisionRec.width, weaponCollisionRec.height, RED); 
 
 
 }
