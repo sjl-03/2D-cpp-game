@@ -2,6 +2,14 @@
 
 A top-down action RPG game built from scratch in C++ using the Raylib graphics library. Features simple real-time combat, enemy AI, collision detection, and tile-based world exploration
 
+<p align="left">
+  <img src="https://github.com/user-attachments/assets/747bb624-9447-43b2-8944-c38a0c0348a3" width="300" alt="idle">
+  <img src="https://github.com/user-attachments/assets/90a214ef-2e93-4ce5-ba60-0013f2c54e9c" width="300" alt="run">
+  <img src="https://github.com/user-attachments/assets/74d1cb91-a309-4b18-a8b2-bdeb200b56bf" width="300" alt="attack">
+</p>
+
+
+
 ## Technologies Used
 
 - **Language**: C++ (with modern C++ features)
